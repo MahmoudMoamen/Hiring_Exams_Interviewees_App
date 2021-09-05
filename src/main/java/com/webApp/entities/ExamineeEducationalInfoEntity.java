@@ -1,15 +1,11 @@
 package com.webApp.entities;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
-import org.hibernate.annotations.Type;
-
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import java.util.Date;
-import java.util.HashMap;
-import java.util.Map;
 
 @Entity(name = "examinee_educational_info")
 public class ExamineeEducationalInfoEntity {
@@ -37,18 +33,6 @@ public class ExamineeEducationalInfoEntity {
 
     @Column(nullable = false)
     private String faculty;
-
-    @Type(type = "json")
-    @Column(nullable = false, columnDefinition = "jsonb")
-    private Map<String, String> certificate_degree = new HashMap<>();
-
-    @Type(type = "json")
-    @Column(nullable = false, columnDefinition = "jsonb")
-    private Map<String, String> provider = new HashMap<>();
-
-    @Type(type = "json")
-    @Column(nullable = false, columnDefinition = "jsonb")
-    private Map<String, String> year = new HashMap<>();
 
     @Column(nullable = false)
     @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
@@ -116,30 +100,6 @@ public class ExamineeEducationalInfoEntity {
 
     public void setFaculty(String faculty) {
         this.faculty = faculty;
-    }
-
-    public Map<String, String> getCertificate_degree() {
-        return certificate_degree;
-    }
-
-    public void setCertificate_degree(Map<String, String> certificate_degree) {
-        this.certificate_degree = certificate_degree;
-    }
-
-    public Map<String, String> getProvider() {
-        return provider;
-    }
-
-    public void setProvider(Map<String, String> provider) {
-        this.provider = provider;
-    }
-
-    public Map<String, String> getYear() {
-        return year;
-    }
-
-    public void setYear(Map<String, String> year) {
-        this.year = year;
     }
 
     public Date getCreated_at() {
