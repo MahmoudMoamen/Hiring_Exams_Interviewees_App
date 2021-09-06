@@ -3,6 +3,7 @@ package com.webApp;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
+//import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
 @SpringBootApplication
 public class WebApplication {
@@ -13,4 +14,9 @@ public class WebApplication {
     public WebApplicationContext springApplicationContext(){
         return new WebApplicationContext();
     }
+
+//    @Bean
+//    public BCryptPasswordEncoder bCryptPasswordEncoder(){
+//        return new BCryptPasswordEncoder();
+//    }
 }

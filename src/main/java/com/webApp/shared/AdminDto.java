@@ -1,16 +1,16 @@
 package com.webApp.shared;
 
 public class AdminDto {
-    private int id;
+    private long id;
     private String username;
-    private String encrypted_password;
+    private String password;
     private String email;
 
-    public int getId() {
+    public long getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(long id) {
         this.id = id;
     }
 
@@ -22,12 +22,12 @@ public class AdminDto {
         this.username = username;
     }
 
-    public String getEncrypted_password() {
-        return encrypted_password;
+    public String getPassword() {
+        return password;
     }
 
-    public void setEncrypted_password(String encrypted_password) {
-        this.encrypted_password = encrypted_password;
+    public void setPassword(String password) {
+        this.password = password;
     }
 
     public String getEmail() {
