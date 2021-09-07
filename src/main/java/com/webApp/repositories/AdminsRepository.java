@@ -9,4 +9,5 @@ import org.springframework.stereotype.Repository;
 public interface AdminsRepository extends CrudRepository<AdminsEntity,Long> {
     AdminsEntity findById(long id);
     AdminsEntity findByEmail(String email);
+    AdminsEntity findByUsername(String username);
 }
