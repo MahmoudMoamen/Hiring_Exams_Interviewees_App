@@ -13,6 +13,42 @@ public class QuestionDto {
     private long paragraphId;
     private ArrayList<String> choices;
     private String modelAnswer;
+    private String paragraphPrompt;
+    private ArrayList<String> paragraphQuestions;
+    private ArrayList<ArrayList<String>> paragraphChoices;
+    private ArrayList<String> paragraphAnswers;
+
+    public ArrayList<String> getParagraphAnswers() {
+        return paragraphAnswers;
+    }
+
+    public void setParagraphAnswers(ArrayList<String> paragraphAnswers) {
+        this.paragraphAnswers = paragraphAnswers;
+    }
+
+    public ArrayList<ArrayList<String>> getParagraphChoices() {
+        return paragraphChoices;
+    }
+
+    public void setParagraphChoices(ArrayList<ArrayList<String>> paragraphChoices) {
+        this.paragraphChoices = paragraphChoices;
+    }
+
+    public String getParagraphPrompt() {
+        return paragraphPrompt;
+    }
+
+    public void setParagraphPrompt(String paragraphPrompt) {
+        this.paragraphPrompt = paragraphPrompt;
+    }
+
+    public ArrayList<String> getParagraphQuestions() {
+        return paragraphQuestions;
+    }
+
+    public void setParagraphQuestions(ArrayList<String> paragraphQuestions) {
+        this.paragraphQuestions = paragraphQuestions;
+    }
 
     public String getTopic() {
         return topic;

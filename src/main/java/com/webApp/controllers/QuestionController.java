@@ -25,7 +25,7 @@ public class QuestionController {
     @PostMapping(consumes ={MediaType.APPLICATION_JSON_VALUE},produces ={MediaType.APPLICATION_JSON_VALUE})
     public QuestionResponse setQuestion(@RequestBody QuestionsDetailsRequestModel questionsDetailsRequestModel){
 
-        if (questionsDetailsRequestModel.getQuestionHeader().isEmpty()) throw new NullPointerException("The Object is null");
+        if (questionsDetailsRequestModel.getQuestionHeader() == null && questionsDetailsRequestModel.getParagraphPrompt()==null) throw new NullPointerException("The Object is null");
         QuestionDto questionDto = new QuestionDto();
         BeanUtils.copyProperties(questionsDetailsRequestModel,questionDto);
 

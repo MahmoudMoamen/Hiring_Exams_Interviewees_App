@@ -27,10 +27,10 @@ public class QuestionHeadersEntity {
     private Boolean result;
 
     @Column
-    private Boolean has_paragragh;
+    private Boolean has_paragraph;
 
     @Column
-    private int paragragh_id;
+    private long paragraph_id;
 
     @Column
     @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
@@ -76,20 +76,20 @@ public class QuestionHeadersEntity {
         this.result = result;
     }
 
-    public Boolean getHas_paragragh() {
-        return has_paragragh;
+    public Boolean getHas_paragraph() {
+        return has_paragraph;
     }
 
-    public void setHas_paragragh(Boolean has_paragraph) {
-        this.has_paragragh = has_paragraph;
+    public void setHas_paragraph(Boolean has_paragraph) {
+        this.has_paragraph = has_paragraph;
     }
 
-    public int getParagragh_id() {
-        return paragragh_id;
+    public long getParagraph_id() {
+        return paragraph_id;
     }
 
-    public void setParagragh_id(int paragraph_id) {
-        this.paragragh_id = paragraph_id;
+    public void setParagraph_id(long paragraph_id) {
+        this.paragraph_id = paragraph_id;
     }
 
     public Date getCreated_at() {
