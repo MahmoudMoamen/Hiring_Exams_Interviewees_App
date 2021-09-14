@@ -2,13 +2,11 @@ package com.webApp.entities;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
+import javax.persistence.*;
 import java.util.Date;
 
-@Entity(name = "questions_headers")
+@Entity
+@Table(name = "questions_headers")
 public class QuestionHeadersEntity {
     @Id
     @GeneratedValue
@@ -30,7 +28,7 @@ public class QuestionHeadersEntity {
     private Boolean has_paragraph;
 
     @Column
-    private long paragraph_id;
+    private Long paragraph_id;
 
     @Column
     @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
@@ -84,11 +82,11 @@ public class QuestionHeadersEntity {
         this.has_paragraph = has_paragraph;
     }
 
-    public long getParagraph_id() {
+    public Long getParagraph_id() {
         return paragraph_id;
     }
 
-    public void setParagraph_id(long paragraph_id) {
+    public void setParagraph_id(Long paragraph_id) {
         this.paragraph_id = paragraph_id;
     }
 

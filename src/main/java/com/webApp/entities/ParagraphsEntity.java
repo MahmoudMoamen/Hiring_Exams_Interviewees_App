@@ -12,29 +12,29 @@ import java.util.Date;
 public class ParagraphsEntity {
     @Id
     @GeneratedValue
-    private long paragraph_id;
+    private Long paragraph_id;
 
     @Column(nullable = false,length = 8000)
-    private String paragragh;
+    private String paragraph;
 
     @Column(nullable = false)
     @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
     private Date created_at;
 
-    public long getParagraph_id() {
+    public Long getParagraph_id() {
         return paragraph_id;
     }
 
-    public void setParagraph_id(long paragraph_id) {
+    public void setParagraph_id(Long paragraph_id) {
         this.paragraph_id = paragraph_id;
     }
 
-    public String getParagragh() {
-        return paragragh;
+    public String getParagraph() {
+        return paragraph;
     }
 
-    public void setParagragh(String paragragh) {
-        this.paragragh = paragragh;
+    public void setParagraph(String paragraph) {
+        this.paragraph = paragraph;
     }
 
     public Date getCreated_at() {

@@ -1,6 +1,7 @@
 package com.webApp.responses;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 
 public class QuestionResponse {
     private long id;
@@ -15,6 +16,51 @@ public class QuestionResponse {
     private ArrayList<String> paragraphQuestions;
     private ArrayList<ArrayList<String>> paragraphChoices;
     private ArrayList<String> paragraphAnswers;
+    private ArrayList<String> topics;
+    private ArrayList<Integer> NoOfQuestionsInTopic;
+    private ArrayList<String> QuestionsReturnedRandomly;
+    private ArrayList<ArrayList<String>> RandomQuestionsChoices;
+    private ArrayList<String> RandomQuestionsAnswers;
+
+    public ArrayList<ArrayList<String>> getRandomQuestionsChoices() {
+        return RandomQuestionsChoices;
+    }
+
+    public void setRandomQuestionsChoices(ArrayList<ArrayList<String>> randomQuestionsChoices) {
+        RandomQuestionsChoices = randomQuestionsChoices;
+    }
+
+    public ArrayList<String> getRandomQuestionsAnswers() {
+        return RandomQuestionsAnswers;
+    }
+
+    public void setRandomQuestionsAnswers(ArrayList<String> randomQuestionsAnswers) {
+        RandomQuestionsAnswers = randomQuestionsAnswers;
+    }
+
+    public ArrayList<String> getQuestionsReturnedRandomly() {
+        return QuestionsReturnedRandomly;
+    }
+
+    public void setQuestionsReturnedRandomly( ArrayList<String> questionsReturnedRandomly) {
+        QuestionsReturnedRandomly = questionsReturnedRandomly;
+    }
+
+    public ArrayList<String> getTopics() {
+        return topics;
+    }
+
+    public void setTopics(ArrayList<String> topics) {
+        this.topics = topics;
+    }
+
+    public ArrayList<Integer> getNoOfQuestionsInTopic() {
+        return NoOfQuestionsInTopic;
+    }
+
+    public void setNoOfQuestionsInTopic(ArrayList<Integer> noOfQuestionsInTopic) {
+        NoOfQuestionsInTopic = noOfQuestionsInTopic;
+    }
 
     public ArrayList<String> getParagraphAnswers() {
         return paragraphAnswers;

@@ -15,6 +15,7 @@ public class QuestionsDetailsRequestModel {
     private ArrayList<ArrayList<String>> paragraphChoices;
     private ArrayList<String> paragraphAnswers;
 
+
     public ArrayList<String> getParagraphAnswers() {
         return paragraphAnswers;
     }

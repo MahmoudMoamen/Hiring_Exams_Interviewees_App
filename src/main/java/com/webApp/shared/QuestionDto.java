@@ -1,4 +1,4 @@
-package com.webApp;
+package com.webApp.shared;
 
 import java.util.ArrayList;
 
