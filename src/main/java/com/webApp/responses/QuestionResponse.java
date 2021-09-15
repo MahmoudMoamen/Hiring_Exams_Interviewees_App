@@ -20,7 +20,7 @@ public class QuestionResponse {
     private ArrayList<Integer> NoOfQuestionsInTopic;
     private ArrayList<String> QuestionsReturnedRandomly;
     private ArrayList<ArrayList<String>> RandomQuestionsChoices;
-    private ArrayList<String> RandomQuestionsAnswers;
+    private ArrayList<Long> RandomQuestionIDs;
 
     public ArrayList<ArrayList<String>> getRandomQuestionsChoices() {
         return RandomQuestionsChoices;
@@ -30,12 +30,12 @@ public class QuestionResponse {
         RandomQuestionsChoices = randomQuestionsChoices;
     }
 
-    public ArrayList<String> getRandomQuestionsAnswers() {
-        return RandomQuestionsAnswers;
+    public ArrayList<Long> getRandomQuestionIDs() {
+        return RandomQuestionIDs;
     }
 
-    public void setRandomQuestionsAnswers(ArrayList<String> randomQuestionsAnswers) {
-        RandomQuestionsAnswers = randomQuestionsAnswers;
+    public void setRandomQuestionIDs(ArrayList<Long> randomQuestionIDs) {
+        RandomQuestionIDs = randomQuestionIDs;
     }
 
     public ArrayList<String> getQuestionsReturnedRandomly() {

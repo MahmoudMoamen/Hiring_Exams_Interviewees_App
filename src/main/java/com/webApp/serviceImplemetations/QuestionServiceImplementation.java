@@ -121,10 +121,14 @@ public class QuestionServiceImplementation implements QuestionService {
 
     @Override
     public QuestionResponse getQuestions(GetQuestionDto getQuestionDto) {
-        QuestionDto questionDto=new QuestionDto();
+        QuestionDto questionDto = new QuestionDto();
         QuestionResponse returnValue = new QuestionResponse();
         ArrayList<String> randomElements = new ArrayList<>();
-        for(int i =0;i<getQuestionDto.getTopics().size();i++) {
+        List<QuestionHeadersEntity> questionHeadersEntityList = questionHeadersRepository.findAll();
+        List<QuestionsDetailsEntity> questionsDetailsEntityList = questionDetailsRepository.findAll();
+        ArrayList<ArrayList<String>> allChoices = new ArrayList<>();
+        ArrayList<Long> RandomQuestionIdList= new ArrayList<>();
+        for (int i = 0; i < getQuestionDto.getTopics().size(); i++) {
             if (getQuestionDto.getTopics().get(i).equalsIgnoreCase("English"))
                 questionDto.setTopicId(1);
             else if (getQuestionDto.getTopics().get(i).equalsIgnoreCase("IQ"))
@@ -134,21 +138,30 @@ public class QuestionServiceImplementation implements QuestionService {
             else if (getQuestionDto.getTopics().get(i).equalsIgnoreCase("Angular"))
                 questionDto.setTopicId(4);
 
-            List<QuestionHeadersEntity> questionHeadersEntityList = questionHeadersRepository.findAll();
-            List<QuestionsDetailsEntity> questionsDetailsEntityList=questionDetailsRepository.findAll();
+
             ArrayList<String> allQuestions = new ArrayList<>();
             for (int x = 0; x < questionHeadersEntityList.size(); x++) {
-                if (questionHeadersEntityList.get(x).getTopic_id() == questionDto.getTopicId() && questionHeadersEntityList.get(x).getType_id()!=4) {
+                if (questionHeadersEntityList.get(x).getTopic_id() == questionDto.getTopicId() && questionHeadersEntityList.get(x).getType_id() != 4) {
                     questionDto.setQuestionHeader(questionHeadersEntityList.get(x).getQuestion());
                     allQuestions.add(questionDto.getQuestionHeader());
+                    ArrayList<String> allValuesOfQuestion = new ArrayList<>();
+                    for (int q = 0; q < questionsDetailsEntityList.size(); q++) {
+                        if (questionsDetailsEntityList.get(q).getQuestion_header_id() == questionHeadersEntityList.get(x).getId()) {
+                            allValuesOfQuestion.add(questionsDetailsEntityList.get(q).getValue());
+                        }
+                    }
+                    allChoices.add(allValuesOfQuestion);
+                    RandomQuestionIdList.add(questionsDetailsEntityList.get(x).getId());
                 }
             }
 
             long max = allQuestions.size();
-            for (int j=0; j < getQuestionDto.getNoOfQuestionsInTopic().get(i); j++) {
+            for (int j = 0; j < getQuestionDto.getNoOfQuestionsInTopic().get(i); j++) {
                 int randomIndex = (int) (Math.random() * max);
                 randomElements.add(allQuestions.get(randomIndex));
             }
+            returnValue.setRandomQuestionIDs(RandomQuestionIdList);
+            returnValue.setRandomQuestionsChoices(allChoices);
             returnValue.setQuestionsReturnedRandomly(randomElements);
             returnValue.setNoOfQuestionsInTopic(getQuestionDto.getNoOfQuestionsInTopic());
             returnValue.setTopics(getQuestionDto.getTopics());
