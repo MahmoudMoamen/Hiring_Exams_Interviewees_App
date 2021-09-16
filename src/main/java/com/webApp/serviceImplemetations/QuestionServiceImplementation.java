@@ -123,11 +123,13 @@ public class QuestionServiceImplementation implements QuestionService {
     public QuestionResponse getQuestions(GetQuestionDto getQuestionDto) {
         QuestionDto questionDto = new QuestionDto();
         QuestionResponse returnValue = new QuestionResponse();
-        ArrayList<String> randomElements = new ArrayList<>();
+        ArrayList<String> randomQuestions = new ArrayList<>();
+        ArrayList<ArrayList<String>> choicesOfRandomQuestions = new ArrayList<>();
+        ArrayList<Long> IDsOfRandomQuestions = new ArrayList<>();
         List<QuestionHeadersEntity> questionHeadersEntityList = questionHeadersRepository.findAll();
         List<QuestionsDetailsEntity> questionsDetailsEntityList = questionDetailsRepository.findAll();
         ArrayList<ArrayList<String>> allChoices = new ArrayList<>();
-        ArrayList<Long> RandomQuestionIdList= new ArrayList<>();
+        ArrayList<Long> RandomQuestionIdList = new ArrayList<>();
         for (int i = 0; i < getQuestionDto.getTopics().size(); i++) {
             if (getQuestionDto.getTopics().get(i).equalsIgnoreCase("English"))
                 questionDto.setTopicId(1);
@@ -155,14 +157,22 @@ public class QuestionServiceImplementation implements QuestionService {
                 }
             }
 
-            long max = allQuestions.size();
+            ArrayList<String> questionsTemp = allQuestions;
+            ArrayList<ArrayList<String>> choicesTemp = allChoices;
+            ArrayList<Long> randomQuestionsIDsTemp = RandomQuestionIdList;
             for (int j = 0; j < getQuestionDto.getNoOfQuestionsInTopic().get(i); j++) {
-                int randomIndex = (int) (Math.random() * max);
-                randomElements.add(allQuestions.get(randomIndex));
+                long maxOfQuestions = questionsTemp.size();
+                int randomIndex = (int) (Math.random() * maxOfQuestions);
+                randomQuestions.add(allQuestions.get(randomIndex));
+                choicesOfRandomQuestions.add(allChoices.get(randomIndex));
+                IDsOfRandomQuestions.add(RandomQuestionIdList.get(randomIndex));
+                questionsTemp.remove(randomIndex);
+                choicesTemp.remove(randomIndex);
+                randomQuestionsIDsTemp.remove(randomIndex);
             }
-            returnValue.setRandomQuestionIDs(RandomQuestionIdList);
-            returnValue.setRandomQuestionsChoices(allChoices);
-            returnValue.setQuestionsReturnedRandomly(randomElements);
+            returnValue.setRandomQuestionIDs(IDsOfRandomQuestions);
+            returnValue.setRandomQuestionsChoices(choicesOfRandomQuestions);
+            returnValue.setQuestionsReturnedRandomly(randomQuestions);
             returnValue.setNoOfQuestionsInTopic(getQuestionDto.getNoOfQuestionsInTopic());
             returnValue.setTopics(getQuestionDto.getTopics());
         }
