@@ -34,6 +34,8 @@ public class WebSecurity extends WebSecurityConfigurerAdapter {
                 .permitAll()
                 .antMatchers(HttpMethod.POST,"/questions","/questions/*")
                 .permitAll()
+                .antMatchers(HttpMethod.DELETE,"/questions/*")
+                .permitAll()
                 .anyRequest().authenticated().and()
                 .addFilter(getAuthenticationFilter())
                 //.addFilter(new AuthorizationFilter(authenticationManager(), objectMapper))

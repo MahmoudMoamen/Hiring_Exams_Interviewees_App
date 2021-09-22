@@ -2,20 +2,18 @@ package com.webApp.entities;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
+import javax.persistence.*;
 import java.util.Date;
 
-@Entity(name = "questions_details")
+@Entity()
+@Table(name = "questions_details")
 public class QuestionsDetailsEntity {
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
 
-    @Column(nullable = false)
-    private long question_header_id;
+    @Column(name = "question_header_id",nullable = false)
+    private long questionHeaderId;
 
     @Column(nullable = false,length = 8000)
     private String value;
@@ -35,12 +33,12 @@ public class QuestionsDetailsEntity {
         this.id = id;
     }
 
-    public long getQuestion_header_id() {
-        return question_header_id;
+    public long getQuestionHeaderId() {
+        return questionHeaderId;
     }
 
-    public void setQuestion_header_id(long question_header_id) {
-        this.question_header_id = question_header_id;
+    public void setQuestionHeaderId(long questionHeaderId) {
+        this.questionHeaderId = questionHeaderId;
     }
 
     public String getValue() {

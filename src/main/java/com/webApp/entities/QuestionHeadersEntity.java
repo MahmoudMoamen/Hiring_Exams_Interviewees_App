@@ -9,7 +9,7 @@ import java.util.Date;
 @Table(name = "questions_headers")
 public class QuestionHeadersEntity {
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
 
     @Column(nullable = false,length = 8000)

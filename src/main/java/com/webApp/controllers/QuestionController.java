@@ -1,6 +1,8 @@
 package com.webApp.controllers;
 
 import com.webApp.requestModels.GetQuestionDetailsRequestModel;
+import com.webApp.responses.OperationStatusModel;
+import com.webApp.responses.RequestOperationStatus;
 import com.webApp.shared.GetQuestionDto;
 import com.webApp.shared.QuestionDto;
 import com.webApp.requestModels.QuestionsDetailsRequestModel;
@@ -18,14 +20,15 @@ public class QuestionController {
     QuestionService questionService;
 
     @PostMapping(consumes ={MediaType.APPLICATION_JSON_VALUE},produces ={MediaType.APPLICATION_JSON_VALUE})
-    public QuestionResponse setQuestion(@RequestBody QuestionsDetailsRequestModel questionsDetailsRequestModel){
+    public OperationStatusModel setQuestion(@RequestBody QuestionsDetailsRequestModel questionsDetailsRequestModel){
 
         if (questionsDetailsRequestModel.getQuestionHeader() == null && questionsDetailsRequestModel.getParagraphPrompt()==null) throw new NullPointerException("The Object is null");
         QuestionDto questionDto = new QuestionDto();
         BeanUtils.copyProperties(questionsDetailsRequestModel,questionDto);
-
-        QuestionResponse returnValue=questionService.setQuestion(questionDto);
-
+        OperationStatusModel returnValue=new OperationStatusModel();
+        returnValue.setOperationName(RequestOperationName.SET_QUESTION.name());
+        questionService.setQuestion(questionDto);
+        returnValue.setOperationResult(RequestOperationStatus.SUCCESS.name());
         return returnValue;
     }
 
@@ -35,6 +38,15 @@ public class QuestionController {
         GetQuestionDto getQuestionDto= new GetQuestionDto();
         BeanUtils.copyProperties(getQuestionDetailsRequestModel,getQuestionDto);
         QuestionResponse returnValue= questionService.getQuestions(getQuestionDto);
+        return returnValue;
+    }
+
+    @DeleteMapping(path = "/{id}", produces = {MediaType.APPLICATION_JSON_VALUE})
+    public OperationStatusModel deleteQuestion(@PathVariable long id){
+        OperationStatusModel returnValue=new OperationStatusModel();
+        returnValue.setOperationName(RequestOperationName.DELETE.name());
+        questionService.deleteQuestion(id);
+        returnValue.setOperationResult(RequestOperationStatus.SUCCESS.name());
         return returnValue;
     }
 }
