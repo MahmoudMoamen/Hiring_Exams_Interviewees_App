@@ -1,57 +1,21 @@
-package com.webApp.entities;
+package com.webApp.shared;
 
-import com.fasterxml.jackson.annotation.JsonFormat;
-
-import javax.persistence.*;
 import java.util.Date;
 
-
-@Entity
-@Table(name = "examinee_personal_info")
-public class ExamineePersonalInfoEntity {
-    @Id
+public class ExamineePersonalInfoDto {
     private String user_id;
-
-    @Column(nullable = false)
     private String applicant_name;
-
-    @Column(nullable = false)
     private String address;
-
-    @Column(nullable = false)
     private String position_applied_for;
-
-    @Column(nullable = false)
     private String email;
-
-    @Column(nullable = false)
     private String marital_status;
-
-    @Column(nullable = false)
     private String military_status;
-
-    @Column(nullable = false)
-    @JsonFormat(shape = JsonFormat.Shape.STRING , pattern = "yyyy-MM-dd")
     private Date date;
-
-    @Column(nullable = false,length = 45)
     private String city;
-
-    @Column(nullable = false)
     private String technology;
-
-    @Column(nullable = false)
     private String mobile;
-
-    @Column(nullable = false)
     private int number_of_dependents;
-
-    @Column(nullable = false)
-    @JsonFormat(shape = JsonFormat.Shape.STRING ,pattern = "yyyy-MM-dd")
     private Date if_postponed_date;
-
-    @Column(nullable = false)
-    @JsonFormat(shape = JsonFormat.Shape.STRING ,pattern = "yyyy-MM-dd HH:mm:ss")
     private Date created_at;
 
     public String getUser_id() {

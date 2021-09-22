@@ -1,66 +1,20 @@
-package com.webApp.entities;
+package com.webApp.requestModels;
 
-import com.fasterxml.jackson.annotation.JsonFormat;
-
-import javax.persistence.*;
 import java.util.Date;
 
-
-@Entity
-@Table(name = "examinee_personal_info")
-public class ExamineePersonalInfoEntity {
-    @Id
-    private String user_id;
-
-    @Column(nullable = false)
+public class ExamineePersonalDetailsRequestModel {
     private String applicant_name;
-
-    @Column(nullable = false)
     private String address;
-
-    @Column(nullable = false)
     private String position_applied_for;
-
-    @Column(nullable = false)
     private String email;
-
-    @Column(nullable = false)
     private String marital_status;
-
-    @Column(nullable = false)
     private String military_status;
-
-    @Column(nullable = false)
-    @JsonFormat(shape = JsonFormat.Shape.STRING , pattern = "yyyy-MM-dd")
     private Date date;
-
-    @Column(nullable = false,length = 45)
     private String city;
-
-    @Column(nullable = false)
     private String technology;
-
-    @Column(nullable = false)
     private String mobile;
-
-    @Column(nullable = false)
     private int number_of_dependents;
-
-    @Column(nullable = false)
-    @JsonFormat(shape = JsonFormat.Shape.STRING ,pattern = "yyyy-MM-dd")
     private Date if_postponed_date;
-
-    @Column(nullable = false)
-    @JsonFormat(shape = JsonFormat.Shape.STRING ,pattern = "yyyy-MM-dd HH:mm:ss")
-    private Date created_at;
-
-    public String getUser_id() {
-        return user_id;
-    }
-
-    public void setUser_id(String user_id) {
-        this.user_id = user_id;
-    }
 
     public String getApplicant_name() {
         return applicant_name;
@@ -156,13 +110,5 @@ public class ExamineePersonalInfoEntity {
 
     public void setIf_postponed_date(Date if_postponed_date) {
         this.if_postponed_date = if_postponed_date;
-    }
-
-    public Date getCreated_at() {
-        return created_at;
-    }
-
-    public void setCreated_at(Date created_at) {
-        this.created_at = created_at;
     }
 }

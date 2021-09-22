@@ -1,28 +1,50 @@
 package com.webApp.entities;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
+import jdk.nashorn.internal.runtime.arrays.ArrayIndex;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
+import javax.persistence.*;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 @Entity(name = "examinees")
 public class ExamineesEntity {
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private String user_id;
 
     @Column(nullable = false)
     private String username;
 
     @Column(nullable = false)
-    private String encrypted_password;
+    private String email;
+
+    @Column()
+    private String status;
+
+    @Column()
+    private String overall_score;
 
     @Column(nullable = false)
     @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
     private Date created_at;
+
+    public String getStatus() {
+        return status;
+    }
+
+    public void setStatus(String status) {
+        this.status = status;
+    }
+
+    public String getOverall_score() {
+        return overall_score;
+    }
+
+    public void setOverall_score(String overall_score) {
+        this.overall_score = overall_score;
+    }
 
     public String getUser_id() {
         return user_id;
@@ -40,12 +62,12 @@ public class ExamineesEntity {
         this.username = username;
     }
 
-    public String getEncrypted_password() {
-        return encrypted_password;
+    public String getEmail() {
+        return email;
     }
 
-    public void setEncrypted_password(String encrypted_password) {
-        this.encrypted_password = encrypted_password;
+    public void setEmail(String email) {
+        this.email = email;
     }
 
     public Date getCreated_at() {

@@ -1,16 +1,14 @@
 package com.webApp.entities;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
+
+import javax.persistence.*;
 import java.util.Date;
 
 @Entity(name = "examinee_educational_info")
 public class ExamineeEducationalInfoEntity {
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private String id_of_user;
 
     @Column(nullable = false)

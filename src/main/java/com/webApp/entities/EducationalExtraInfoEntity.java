@@ -8,7 +8,7 @@ import java.util.Date;
 @Entity(name = "educational_extra_info")
 public class EducationalExtraInfoEntity {
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long seq;
 
     @Column(nullable = false)
