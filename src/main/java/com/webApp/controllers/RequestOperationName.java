@@ -2,6 +2,8 @@ package com.webApp.controllers;
 
 public enum RequestOperationName {
     SET_QUESTION,
-    SET_PERSONAL_INFO,
+    SET_EXAMINEE,
+    EXAMINEE_DATA_UPDATED,
+    SET_EXAMINEE_EDUCATIONAL_DATA,
     DELETE
 }

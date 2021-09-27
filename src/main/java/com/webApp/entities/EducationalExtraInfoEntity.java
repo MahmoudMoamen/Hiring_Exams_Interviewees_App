@@ -5,7 +5,8 @@ import com.fasterxml.jackson.annotation.JsonFormat;
 import javax.persistence.*;
 import java.util.Date;
 
-@Entity(name = "educational_extra_info")
+@Entity
+@Table(name = "educational_extra_info")
 public class EducationalExtraInfoEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

@@ -1,49 +1,20 @@
-package com.webApp.entities;
+package com.webApp.requestModels;
 
-import com.fasterxml.jackson.annotation.JsonFormat;
+import com.webApp.entities.EducationalExtraInfoEntity;
 
-import javax.persistence.*;
-import java.util.Date;
+import java.util.ArrayList;
+import java.util.List;
 
-@Entity
-@Table(name = "examinee_educational_info")
-public class ExamineeEducationalInfoEntity {
-    @Id
-    @Column(name = "id_of_user")
-    private String UserID;
-
-    @Column(nullable = false)
+public class ExamineeEducationalInfoDetailsRequestModel {
     private String high_school_name;
-
-    @Column(nullable = false)
     private int high_school_graduation_year;
-
-    @Column(nullable = false)
     private String university_name;
-
-    @Column(nullable = false)
     private String major;
-
-    @Column(nullable = false)
     private String grade;
-
-    @Column(nullable = false)
     private int university_graduation_year;
-
-    @Column(nullable = false)
     private String faculty;
+    private ArrayList<ArrayList<String>> AddMoreItems;
 
-    @Column(nullable = false)
-    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
-    private Date created_at;
-
-    public String getUserID() {
-        return UserID;
-    }
-
-    public void setUserID(String UserID) {
-        this.UserID = UserID;
-    }
 
     public String getHigh_school_name() {
         return high_school_name;
@@ -101,11 +72,11 @@ public class ExamineeEducationalInfoEntity {
         this.faculty = faculty;
     }
 
-    public Date getCreated_at() {
-        return created_at;
+    public ArrayList<ArrayList<String>> getAddMoreItems() {
+        return AddMoreItems;
     }
 
-    public void setCreated_at(Date created_at) {
-        this.created_at = created_at;
+    public void setAddMoreItems(ArrayList<ArrayList<String>> addMoreItems) {
+        AddMoreItems = addMoreItems;
     }
 }
