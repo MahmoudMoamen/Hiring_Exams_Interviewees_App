@@ -10,7 +10,7 @@ import java.util.Date;
 public class ExamineeEducationalInfoEntity {
     @Id
     @Column(name = "id_of_user")
-    private String UserID;
+    private String userID;
 
     @Column(nullable = false)
     private String high_school_name;
@@ -38,11 +38,11 @@ public class ExamineeEducationalInfoEntity {
     private Date created_at;
 
     public String getUserID() {
-        return UserID;
+        return userID;
     }
 
-    public void setUserID(String UserID) {
-        this.UserID = UserID;
+    public void setUserID(String userID) {
+        this.userID = userID;
     }
 
     public String getHigh_school_name() {

@@ -16,6 +16,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.Date;
+import java.util.List;
 
 
 @Service
@@ -72,7 +73,7 @@ public class FormServiceImplementation implements FormService {
         for(int i=0;i<examineeEducationalInfoDto.getAddMoreItems().size();i++){
             EducationalExtraInfoEntity educationalExtraInfoEntity = new EducationalExtraInfoEntity();
             educationalExtraInfoEntity.setCreated_at(new Date(System.currentTimeMillis()));
-            educationalExtraInfoEntity.setUser_id(examineeEducationalInfoDto.getUserId());
+            educationalExtraInfoEntity.setUserId(examineeEducationalInfoDto.getUserId());
             for(int j=0;j<examineeEducationalInfoDto.getAddMoreItems().get(i).size();j++){
                 switch(j){
                     case 0:educationalExtraInfoEntity.setCertificate_degree(examineeEducationalInfoDto.getAddMoreItems().get(i).get(j)); break;
@@ -84,5 +85,35 @@ public class FormServiceImplementation implements FormService {
             educationalExtraInfoRepository.save(educationalExtraInfoEntity);
         }
 
+    }
+    @Override
+    public void updateEducationalInfo(String id, ExamineeEducationalInfoDto examineeEducationalInfoDto) {
+        ExamineeEducationalInfoEntity examineeEducationalInfoEntity=examineeEducationalInfoRepository.getOne(id);
+        List<EducationalExtraInfoEntity> storedEducationalExtraInfoEntity=educationalExtraInfoRepository.findAllByUserId(id);
+        educationalExtraInfoRepository.deleteAll(storedEducationalExtraInfoEntity);
+        if (examineeEducationalInfoEntity==null) throw new ExamineeServiceException(ErrorMessages.NO_RECORD_FOUND.getErrorMessage());
+        BeanUtils.copyProperties(examineeEducationalInfoDto,examineeEducationalInfoEntity);
+        for(int i=0;i<examineeEducationalInfoDto.getAddMoreItems().size();i++) {
+            EducationalExtraInfoEntity educationalExtraInfoEntity = new EducationalExtraInfoEntity();
+            educationalExtraInfoEntity.setCreated_at(new Date(System.currentTimeMillis()));
+            educationalExtraInfoEntity.setUserId(examineeEducationalInfoDto.getUserId());
+            for (int j = 0; j < examineeEducationalInfoDto.getAddMoreItems().get(i).size(); j++) {
+                switch (j) {
+                    case 0:
+                        educationalExtraInfoEntity.setCertificate_degree(examineeEducationalInfoDto.getAddMoreItems().get(i).get(j));
+                        break;
+                    case 1:
+                        educationalExtraInfoEntity.setProvider(examineeEducationalInfoDto.getAddMoreItems().get(i).get(j));
+                        break;
+                    case 2:
+                        educationalExtraInfoEntity.setYear(Integer.parseInt(examineeEducationalInfoDto.getAddMoreItems().get(i).get(j)));
+                        break;
+                    default:
+                        break;
+                }
+            }
+            educationalExtraInfoRepository.save(educationalExtraInfoEntity);
+        }
+        examineeEducationalInfoRepository.save(examineeEducationalInfoEntity);
     }
 }

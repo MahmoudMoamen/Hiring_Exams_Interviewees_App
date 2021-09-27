@@ -3,9 +3,11 @@ package com.webApp.controllers;
 import com.webApp.requestModels.ExamineeEducationalInfoDetailsRequestModel;
 import com.webApp.responses.ErrorMessages;
 import com.webApp.responses.ExamineeOperationStatusModel;
+import com.webApp.responses.OperationStatusModel;
 import com.webApp.responses.RequestOperationStatus;
 import com.webApp.service.FormService;
 import com.webApp.shared.ExamineeEducationalInfoDto;
+import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
@@ -35,6 +37,18 @@ public class ExamineeEducationalInfoController {
         formService.setEducationalInfo(id,examineeEducationalInfoDto);
         returnValue.setOperationResult(RequestOperationStatus.SUCCESS.name());
         returnValue.setUserId(examineeEducationalInfoDto.getUserId());
+        return returnValue;
+    }
+
+    @PutMapping(path = "EducationalInfo/{id}",consumes ={MediaType.APPLICATION_JSON_VALUE},produces ={MediaType.APPLICATION_JSON_VALUE})
+    public OperationStatusModel updateEducationalInfo(@PathVariable String id,@RequestBody ExamineeEducationalInfoDetailsRequestModel examineeEducationalInfoDetailsRequestModel){
+        ExamineeEducationalInfoDto examineeEducationalInfoDto=new ExamineeEducationalInfoDto();
+        BeanUtils.copyProperties(examineeEducationalInfoDetailsRequestModel,examineeEducationalInfoDto);
+        examineeEducationalInfoDto.setUserId(id);
+        OperationStatusModel returnValue= new OperationStatusModel();
+        returnValue.setOperationName(RequestOperationName.EXAMINEE_EDUCATIONAL_DATA_UPDATED.name());
+        formService.updateEducationalInfo(id,examineeEducationalInfoDto);
+        returnValue.setOperationResult(RequestOperationStatus.SUCCESS.name());
         return returnValue;
     }
 }

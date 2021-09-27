@@ -5,50 +5,51 @@ import com.fasterxml.jackson.annotation.JsonFormat;
 import javax.persistence.*;
 import java.util.Date;
 
-@Entity(name = "examinee_work_experience_info")
+@Entity
+@Table(name = "examinee_work_experience_info")
 public class ExamineeWorkExperienceEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long seq;
 
-    @Column(nullable = false)
-    private String user__id;
+    @Column(name = "user__id",nullable = false)
+    private String userId;
+
+    @Column(name = "fresh_graduate",nullable = false)
+    private Boolean freshGraduate;
+
+    @Column(name = "total_years_of_experience",nullable = false)
+    private int totalYearsExperience;
+
+    @Column(name = "company_name",nullable = false)
+    private String companyName;
+
+    @Column(name = "current_employer",nullable = false)
+    private Boolean currentEmployer;
 
     @Column(nullable = false)
-    private Boolean fresh_graduate;
-
-    @Column(nullable = false)
-    private int total_years_of_experience;
-
-    @Column(nullable = false)
-    private String company_name;
-
-    @Column(nullable = false)
-    private Boolean current_employer;
-
-    @Column(nullable = false)
-    @JsonFormat(pattern = "dd/MM/yyyy")
+    @JsonFormat(pattern = "yyyy-MM-dd")
     private Date from;
 
     @Column(nullable = false)
-    @JsonFormat(pattern = "dd/MM/yyyy")
+    @JsonFormat(pattern = "yyyy-MM-dd")
     private Date to;
 
-    @Column(nullable = false)
-    private String entry_position;
+    @Column(name = "entry_position",nullable = false)
+    private String entryPosition;
 
-    @Column(nullable = false)
-    private String last_position_held;
+    @Column(name = "last_position_held",nullable = false)
+    private String lastPositionHeld;
 
-    @Column(nullable = false)
-    private int last_monthly_salary;
+    @Column(name = "last_monthly_salary",nullable = false)
+    private int lastMonthlySalary;
 
-    @Column(nullable = false)
-    private String reason_for_leaving;
+    @Column(name = "reason_for_leaving",nullable = false)
+    private String reasonForLeaving;
 
-    @Column(nullable = false)
+    @Column(name = "created_at",nullable = false)
     @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
-    private Date created_at;
+    private Date createdAt;
 
     public long getSeq() {
         return seq;
@@ -58,44 +59,44 @@ public class ExamineeWorkExperienceEntity {
         this.seq = seq;
     }
 
-    public String getUser__id() {
-        return user__id;
+    public String getUserId() {
+        return userId;
     }
 
-    public void setUser__id(String user__id) {
-        this.user__id = user__id;
+    public void setUserId(String userId) {
+        this.userId = userId;
     }
 
-    public Boolean getFresh_graduate() {
-        return fresh_graduate;
+    public Boolean getFreshGraduate() {
+        return freshGraduate;
     }
 
-    public void setFresh_graduate(Boolean fresh_graduate) {
-        this.fresh_graduate = fresh_graduate;
+    public void setFreshGraduate(Boolean freshGraduate) {
+        this.freshGraduate = freshGraduate;
     }
 
-    public int getTotal_years_of_experience() {
-        return total_years_of_experience;
+    public int getTotalYearsExperience() {
+        return totalYearsExperience;
     }
 
-    public void setTotal_years_of_experience(int total_years_of_experience) {
-        this.total_years_of_experience = total_years_of_experience;
+    public void setTotalYearsExperience(int totalYearsExperience) {
+        this.totalYearsExperience = totalYearsExperience;
     }
 
-    public String getCompany_name() {
-        return company_name;
+    public String getCompanyName() {
+        return companyName;
     }
 
-    public void setCompany_name(String company_name) {
-        this.company_name = company_name;
+    public void setCompanyName(String companyName) {
+        this.companyName = companyName;
     }
 
-    public Boolean getCurrent_employer() {
-        return current_employer;
+    public Boolean getCurrentEmployer() {
+        return currentEmployer;
     }
 
-    public void setCurrent_employer(Boolean current_employer) {
-        this.current_employer = current_employer;
+    public void setCurrentEmployer(Boolean currentEmployer) {
+        this.currentEmployer = currentEmployer;
     }
 
     public Date getFrom() {
@@ -114,43 +115,43 @@ public class ExamineeWorkExperienceEntity {
         this.to = to;
     }
 
-    public String getEntry_position() {
-        return entry_position;
+    public String getEntryPosition() {
+        return entryPosition;
     }
 
-    public void setEntry_position(String entry_position) {
-        this.entry_position = entry_position;
+    public void setEntryPosition(String entryPosition) {
+        this.entryPosition = entryPosition;
     }
 
-    public String getLast_position_held() {
-        return last_position_held;
+    public String getLastPositionHeld() {
+        return lastPositionHeld;
     }
 
-    public void setLast_position_held(String last_position_held) {
-        this.last_position_held = last_position_held;
+    public void setLastPositionHeld(String lastPositionHeld) {
+        this.lastPositionHeld = lastPositionHeld;
     }
 
-    public int getLast_monthly_salary() {
-        return last_monthly_salary;
+    public int getLastMonthlySalary() {
+        return lastMonthlySalary;
     }
 
-    public void setLast_monthly_salary(int last_monthly_salary) {
-        this.last_monthly_salary = last_monthly_salary;
+    public void setLastMonthlySalary(int lastMonthlySalary) {
+        this.lastMonthlySalary = lastMonthlySalary;
     }
 
-    public String getReason_for_leaving() {
-        return reason_for_leaving;
+    public String getReasonForLeaving() {
+        return reasonForLeaving;
     }
 
-    public void setReason_for_leaving(String reason_for_leaving) {
-        this.reason_for_leaving = reason_for_leaving;
+    public void setReasonForLeaving(String reasonForLeaving) {
+        this.reasonForLeaving = reasonForLeaving;
     }
 
-    public Date getCreated_at() {
-        return created_at;
+    public Date getCreatedAt() {
+        return createdAt;
     }
 
-    public void setCreated_at(Date created_at) {
-        this.created_at = created_at;
+    public void setCreatedAt(Date createdAt) {
+        this.createdAt = createdAt;
     }
 }

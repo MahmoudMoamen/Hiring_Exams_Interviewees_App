@@ -36,7 +36,7 @@ public class WebSecurity extends WebSecurityConfigurerAdapter {
                 .permitAll()
                 .antMatchers(HttpMethod.DELETE,"/questions/*")
                 .permitAll()
-                .antMatchers(HttpMethod.PUT,"/registration/PersonalInfo/*")
+                .antMatchers(HttpMethod.PUT,"/registration/PersonalInfo/*","/registration/EducationalInfo/*")
                 .permitAll()
                 .anyRequest().authenticated().and()
                 .addFilter(getAuthenticationFilter())

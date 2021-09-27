@@ -7,4 +7,5 @@ public interface FormService {
     void insertUser(ExamineePersonalInfoDto examineePersonalInfoDto);
     void updateUser(String id,ExamineePersonalInfoDto examineePersonalInfoDto);
     void setEducationalInfo(String id,ExamineeEducationalInfoDto examineeEducationalInfoDto);
+    void updateEducationalInfo(String id,ExamineeEducationalInfoDto examineeEducationalInfoDto);
 }

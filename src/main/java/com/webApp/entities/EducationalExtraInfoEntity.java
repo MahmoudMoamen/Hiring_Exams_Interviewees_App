@@ -12,8 +12,8 @@ public class EducationalExtraInfoEntity {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long seq;
 
-    @Column(nullable = false)
-    private String user_id;
+    @Column(name = "user_id",nullable = false)
+    private String userId;
 
     @Column(nullable = false)
     private String certificate_degree;
@@ -36,12 +36,12 @@ public class EducationalExtraInfoEntity {
         this.seq = seq;
     }
 
-    public String getUser_id() {
-        return user_id;
+    public String getUserId() {
+        return userId;
     }
 
-    public void setUser_id(String user_id) {
-        this.user_id = user_id;
+    public void setUserId(String userId) {
+        this.userId = userId;
     }
 
     public String getCertificate_degree() {
