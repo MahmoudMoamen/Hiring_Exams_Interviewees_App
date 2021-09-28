@@ -8,5 +8,5 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public interface ExamineeWorkExperienceRepository extends CrudRepository<ExamineeWorkExperienceEntity,Long>, JpaRepository<ExamineeWorkExperienceEntity,Long> {
-
+    ExamineeWorkExperienceEntity findByUserId(String id);
 }

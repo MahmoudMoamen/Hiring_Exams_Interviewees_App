@@ -5,10 +5,7 @@ import com.webApp.exceptions.ExamineeServiceException;
 import com.webApp.repositories.*;
 import com.webApp.responses.ErrorMessages;
 import com.webApp.service.FormService;
-import com.webApp.shared.ExamineeEducationalInfoDto;
-import com.webApp.shared.ExamineePersonalInfoDto;
-import com.webApp.shared.ExamineeWorkExpDto;
-import com.webApp.shared.Utils;
+import com.webApp.shared.*;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -33,6 +30,9 @@ public class FormServiceImplementation implements FormService {
     @Autowired
     ExamineeWorkExperienceRepository examineeWorkExperienceRepository;
 
+    @Autowired
+    CompanyJobQuestionsRepository companyJobQuestionsRepository;
+
 
     @Override
     public void insertUser(ExamineePersonalInfoDto examineePersonalInfoDto) {
@@ -46,7 +46,6 @@ public class FormServiceImplementation implements FormService {
         BeanUtils.copyProperties(examineePersonalInfoDto, examineePersonalInfoEntity);
         examineePersonalInfoRepository.save(examineePersonalInfoEntity);
     }
-
     @Override
     public void updateUser(String id, ExamineePersonalInfoDto examineePersonalInfoDto) {
         ExamineePersonalInfoEntity examineePersonalInfoEntity = examineePersonalInfoRepository.getOne(id);
@@ -55,6 +54,7 @@ public class FormServiceImplementation implements FormService {
         BeanUtils.copyProperties(examineePersonalInfoDto, examineePersonalInfoEntity);
         examineePersonalInfoRepository.save(examineePersonalInfoEntity);
     }
+
 
     @Override
     public void setEducationalInfo(String id,ExamineeEducationalInfoDto examineeEducationalInfoDto) {
@@ -118,11 +118,27 @@ public class FormServiceImplementation implements FormService {
         examineeEducationalInfoRepository.save(examineeEducationalInfoEntity);
     }
 
+
     @Override
     public void setWorkExperienceInfo(String id, ExamineeWorkExpDto examineeWorkExpDto) {
         ExamineeWorkExperienceEntity examineeWorkExperienceEntity=new ExamineeWorkExperienceEntity();
         examineeWorkExperienceEntity.setCreatedAt(new Date(System.currentTimeMillis()));
         BeanUtils.copyProperties(examineeWorkExpDto,examineeWorkExperienceEntity);
         examineeWorkExperienceRepository.save(examineeWorkExperienceEntity);
+    }
+    @Override
+    public void updateWorkExperienceInfo(String id, ExamineeWorkExpDto examineeWorkExpDto) {
+        ExamineeWorkExperienceEntity examineeWorkExperienceEntity=examineeWorkExperienceRepository.findByUserId(id);
+        BeanUtils.copyProperties(examineeWorkExpDto,examineeWorkExperienceEntity);
+        examineeWorkExperienceRepository.save(examineeWorkExperienceEntity);
+    }
+
+
+    @Override
+    public void setJobQuestionAns(String id, CompanyJobQuestionsDto companyJobQuestionsDto) {
+        CompanyJobQuestionsEntity companyJobQuestionsEntity=new CompanyJobQuestionsEntity();
+        companyJobQuestionsEntity.setCreated_at(new Date(System.currentTimeMillis()));
+        BeanUtils.copyProperties(companyJobQuestionsDto,companyJobQuestionsEntity);
+        companyJobQuestionsRepository.save(companyJobQuestionsEntity);
     }
 }

@@ -11,6 +11,7 @@ import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.web.access.channel.ChannelProcessingFilter;
 
 import javax.servlet.http.HttpServletRequest;
 
@@ -30,16 +31,17 @@ public class WebSecurity extends WebSecurityConfigurerAdapter {
     protected void configure(HttpSecurity http) throws Exception {
         http.csrf().disable().authorizeRequests().antMatchers(HttpMethod.POST, SecurityConstants.SIGN_UP_URL)
                 .permitAll()
-                .antMatchers("/v2/api-docs", "/configuration/**", "/swagger*/**", "/webjars/**","/registration/*")
+                .antMatchers("/v2/api-docs", "/configuration/**", "/swagger*/**", "/webjars/**")
                 .permitAll()
-                .antMatchers(HttpMethod.POST,"/questions","/questions/*","/registration/EducationalInfo/*","/registration/WorkExperienceInfo/*")
+                .antMatchers(HttpMethod.POST,"/questions","/questions/*","/registration/EducationalInfo/*","/registration/WorkExperienceInfo/*","/registration/JobQuestions/*")
                 .permitAll()
                 .antMatchers(HttpMethod.DELETE,"/questions/*")
                 .permitAll()
-                .antMatchers(HttpMethod.PUT,"/registration/PersonalInfo/*","/registration/EducationalInfo/*","/registration/WorkExperienceInfo/*")
+                .antMatchers(HttpMethod.PUT,"/registration/PersonalInfo/*","/registration/EducationalInfo/*","/registration/WorkExperienceInfo/*","/registration/JobQuestions/*")
                 .permitAll()
                 .anyRequest().authenticated().and()
                 .addFilter(getAuthenticationFilter())
+                .addFilterBefore(new CorsFilter(), ChannelProcessingFilter.class)
                 //.addFilter(new AuthorizationFilter(authenticationManager(), objectMapper))
                 .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS);
     }

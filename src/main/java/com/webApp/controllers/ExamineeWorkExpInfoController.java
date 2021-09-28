@@ -3,6 +3,7 @@ package com.webApp.controllers;
 import com.webApp.requestModels.ExamineeWorkExpDetailsRequestModel;
 import com.webApp.responses.ErrorMessages;
 import com.webApp.responses.ExamineeOperationStatusModel;
+import com.webApp.responses.OperationStatusModel;
 import com.webApp.responses.RequestOperationStatus;
 import com.webApp.service.FormService;
 import com.webApp.shared.ExamineeWorkExpDto;
@@ -28,6 +29,18 @@ public class ExamineeWorkExpInfoController {
         formService.setWorkExperienceInfo(id,examineeWorkExpDto);
         returnValue.setOperationResult(RequestOperationStatus.SUCCESS.name());
         returnValue.setUserId(examineeWorkExpDto.getUserId());
+        return returnValue;
+    }
+
+    @PutMapping(path = "/WorkExperienceInfo/{id}",consumes ={MediaType.APPLICATION_JSON_VALUE},produces ={MediaType.APPLICATION_JSON_VALUE})
+    public OperationStatusModel updateWorkExperienceData(@PathVariable String id,@RequestBody ExamineeWorkExpDetailsRequestModel examineeWorkExpDetailsRequestModel){
+        ExamineeWorkExpDto examineeWorkExpDto= new ExamineeWorkExpDto();
+        BeanUtils.copyProperties(examineeWorkExpDetailsRequestModel,examineeWorkExpDto);
+        examineeWorkExpDto.setUserId(id);
+        OperationStatusModel returnValue = new OperationStatusModel();
+        returnValue.setOperationName(RequestOperationName.EXAMINEE_WORK_EXPERIENCE_DATA_UPDATED.name());
+        formService.updateWorkExperienceInfo(id,examineeWorkExpDto);
+        returnValue.setOperationResult(RequestOperationStatus.SUCCESS.name());
         return returnValue;
     }
 }
