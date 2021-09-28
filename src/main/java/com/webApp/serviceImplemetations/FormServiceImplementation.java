@@ -2,14 +2,12 @@ package com.webApp.serviceImplemetations;
 
 import com.webApp.entities.*;
 import com.webApp.exceptions.ExamineeServiceException;
-import com.webApp.repositories.EducationalExtraInfoRepository;
-import com.webApp.repositories.ExamineeEducationalInfoRepository;
-import com.webApp.repositories.ExamineePersonalInfoRepository;
-import com.webApp.repositories.ExamineeRepository;
+import com.webApp.repositories.*;
 import com.webApp.responses.ErrorMessages;
 import com.webApp.service.FormService;
 import com.webApp.shared.ExamineeEducationalInfoDto;
 import com.webApp.shared.ExamineePersonalInfoDto;
+import com.webApp.shared.ExamineeWorkExpDto;
 import com.webApp.shared.Utils;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -31,6 +29,9 @@ public class FormServiceImplementation implements FormService {
 
     @Autowired
     EducationalExtraInfoRepository educationalExtraInfoRepository;
+
+    @Autowired
+    ExamineeWorkExperienceRepository examineeWorkExperienceRepository;
 
 
     @Override
@@ -115,5 +116,13 @@ public class FormServiceImplementation implements FormService {
             educationalExtraInfoRepository.save(educationalExtraInfoEntity);
         }
         examineeEducationalInfoRepository.save(examineeEducationalInfoEntity);
+    }
+
+    @Override
+    public void setWorkExperienceInfo(String id, ExamineeWorkExpDto examineeWorkExpDto) {
+        ExamineeWorkExperienceEntity examineeWorkExperienceEntity=new ExamineeWorkExperienceEntity();
+        examineeWorkExperienceEntity.setCreatedAt(new Date(System.currentTimeMillis()));
+        BeanUtils.copyProperties(examineeWorkExpDto,examineeWorkExperienceEntity);
+        examineeWorkExperienceRepository.save(examineeWorkExperienceEntity);
     }
 }

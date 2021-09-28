@@ -27,11 +27,11 @@ public class ExamineeWorkExperienceEntity {
     @Column(name = "current_employer",nullable = false)
     private Boolean currentEmployer;
 
-    @Column(nullable = false)
+    @Column(name = "date_from",nullable = false)
     @JsonFormat(pattern = "yyyy-MM-dd")
     private Date from;
 
-    @Column(nullable = false)
+    @Column(name = "date_to",nullable = false)
     @JsonFormat(pattern = "yyyy-MM-dd")
     private Date to;
 

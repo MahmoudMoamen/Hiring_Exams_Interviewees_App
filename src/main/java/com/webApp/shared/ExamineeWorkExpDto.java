@@ -1,8 +1,9 @@
-package com.webApp.requestModels;
+package com.webApp.shared;
 
 import java.util.Date;
 
-public class ExamineeWorkExpDetailsRequestModel {
+public class ExamineeWorkExpDto {
+    private String userId;
     private Boolean freshGraduate;
     private int totalYearsExperience;
     private String companyName;
@@ -13,6 +14,14 @@ public class ExamineeWorkExpDetailsRequestModel {
     private String lastPositionHeld;
     private int lastMonthlySalary;
     private String reasonForLeaving;
+
+    public String getUserId() {
+        return userId;
+    }
+
+    public void setUserId(String userId) {
+        this.userId = userId;
+    }
 
     public Boolean getFreshGraduate() {
         return freshGraduate;
