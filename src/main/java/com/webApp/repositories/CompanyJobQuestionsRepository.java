@@ -7,5 +7,5 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public interface CompanyJobQuestionsRepository extends CrudRepository<CompanyJobQuestionsEntity,String>, JpaRepository<CompanyJobQuestionsEntity,String> {
-
+    CompanyJobQuestionsEntity findByUserId(String id);
 }

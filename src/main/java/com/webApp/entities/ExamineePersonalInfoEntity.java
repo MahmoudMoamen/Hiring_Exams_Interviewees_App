@@ -46,7 +46,7 @@ public class ExamineePersonalInfoEntity {
     @Column(nullable = false)
     private int number_of_dependents;
 
-    @Column(nullable = false)
+    @Column
     @JsonFormat(shape = JsonFormat.Shape.STRING ,pattern = "yyyy-MM-dd")
     private Date if_postponed_date;
 

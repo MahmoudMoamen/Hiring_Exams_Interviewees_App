@@ -33,6 +33,12 @@ public class FormServiceImplementation implements FormService {
     @Autowired
     CompanyJobQuestionsRepository companyJobQuestionsRepository;
 
+    @Autowired
+    RecommendationInEgabiFSIRepository recommendationInEgabiFSIRepository;
+
+    @Autowired
+    ReferenceCheckRepository referenceCheckRepository;
+
 
     @Override
     public void insertUser(ExamineePersonalInfoDto examineePersonalInfoDto) {
@@ -140,5 +146,51 @@ public class FormServiceImplementation implements FormService {
         companyJobQuestionsEntity.setCreated_at(new Date(System.currentTimeMillis()));
         BeanUtils.copyProperties(companyJobQuestionsDto,companyJobQuestionsEntity);
         companyJobQuestionsRepository.save(companyJobQuestionsEntity);
+    }
+
+    @Override
+    public void updateJobAnswersInfo(String id, CompanyJobQuestionsDto companyJobQuestionsDto) {
+        CompanyJobQuestionsEntity companyJobQuestionsEntity=companyJobQuestionsRepository.findByUserId(id);
+        BeanUtils.copyProperties(companyJobQuestionsDto,companyJobQuestionsEntity);
+        companyJobQuestionsRepository.save(companyJobQuestionsEntity);
+    }
+
+    @Override
+    public void setFormExtraInfo(String id, FormExtraQuestionsDto formExtraQuestionsDto) {
+        FormExtraQuestionsEntity formExtraQuestionsEntity=new FormExtraQuestionsEntity();
+        formExtraQuestionsEntity.setCreated_at(new Date(System.currentTimeMillis()));
+        formExtraQuestionsEntity.setUser_id(formExtraQuestionsDto.getUserId());
+        formExtraQuestionsEntity.setHas_relatives(formExtraQuestionsDto.getHasRelatives());
+
+        for (int i=0;i<formExtraQuestionsDto.getRecommendation().size();i++){
+            RecommendationInEgabifsiEntity recommendationInEgabifsiEntity=new RecommendationInEgabifsiEntity();
+            recommendationInEgabifsiEntity.setUser___id(formExtraQuestionsDto.getUserId());
+            for (int j=0;j<formExtraQuestionsDto.getRecommendation().get(i).size();j++){
+                switch (j){
+                    case 0: recommendationInEgabifsiEntity.setName(formExtraQuestionsDto.getRecommendation().get(i).get(j));break;
+                    case 1: recommendationInEgabifsiEntity.setTitle(formExtraQuestionsDto.getRecommendation().get(i).get(j));break;
+                    case 2: recommendationInEgabifsiEntity.setMobile_no(formExtraQuestionsDto.getRecommendation().get(i).get(j));break;
+                    default:break;
+                }
+            }
+            recommendationInEgabifsiEntity.setCreated_at(new Date(System.currentTimeMillis()));
+            recommendationInEgabiFSIRepository.save(recommendationInEgabifsiEntity);
+        }
+
+        for (int i=0;i<formExtraQuestionsDto.getReferenceCheck().size();i++){
+            ReferenceCheckEntity referenceCheckEntity=new ReferenceCheckEntity();
+            referenceCheckEntity.setUser_id(formExtraQuestionsDto.getUserId());
+            for (int j=0;j<formExtraQuestionsDto.getReferenceCheck().get(i).size();j++){
+                switch (j){
+                    case 0:referenceCheckEntity.setName(formExtraQuestionsDto.getReferenceCheck().get(i).get(j));break;
+                    case 1:referenceCheckEntity.setTitle(formExtraQuestionsDto.getReferenceCheck().get(i).get(j));break;
+                    case 2:referenceCheckEntity.setEmployer(formExtraQuestionsDto.getReferenceCheck().get(i).get(j));break;
+                    case 3:referenceCheckEntity.setMobile_no(formExtraQuestionsDto.getReferenceCheck().get(i).get(j));break;
+                    default:break;
+                }
+            }
+            referenceCheckEntity.setCreated_at(new Date(System.currentTimeMillis()));
+            referenceCheckRepository.save(referenceCheckEntity);
+        }
     }
 }

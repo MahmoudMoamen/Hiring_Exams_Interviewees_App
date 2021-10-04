@@ -1,9 +1,6 @@
 package com.webApp.service;
 
-import com.webApp.shared.CompanyJobQuestionsDto;
-import com.webApp.shared.ExamineeEducationalInfoDto;
-import com.webApp.shared.ExamineePersonalInfoDto;
-import com.webApp.shared.ExamineeWorkExpDto;
+import com.webApp.shared.*;
 
 public interface FormService {
     void insertUser(ExamineePersonalInfoDto examineePersonalInfoDto);
@@ -13,4 +10,6 @@ public interface FormService {
     void setWorkExperienceInfo(String id, ExamineeWorkExpDto examineeWorkExpDto);
     void updateWorkExperienceInfo(String id,ExamineeWorkExpDto examineeWorkExpDto);
     void setJobQuestionAns(String id, CompanyJobQuestionsDto companyJobQuestionsDto);
+    void updateJobAnswersInfo(String id,CompanyJobQuestionsDto companyJobQuestionsDto);
+    void setFormExtraInfo(String id, FormExtraQuestionsDto formExtraQuestionsDto);
 }

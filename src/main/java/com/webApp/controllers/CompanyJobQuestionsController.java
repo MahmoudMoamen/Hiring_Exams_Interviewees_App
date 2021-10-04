@@ -3,6 +3,7 @@ package com.webApp.controllers;
 import com.webApp.requestModels.CompanyJobQuestionsRequestModel;
 import com.webApp.responses.ErrorMessages;
 import com.webApp.responses.ExamineeOperationStatusModel;
+import com.webApp.responses.OperationStatusModel;
 import com.webApp.responses.RequestOperationStatus;
 import com.webApp.service.FormService;
 import com.webApp.shared.CompanyJobQuestionsDto;
@@ -28,6 +29,18 @@ public class CompanyJobQuestionsController {
         formService.setJobQuestionAns(id,companyJobQuestionsDto);
         returnValue.setOperationResult(RequestOperationStatus.SUCCESS.name());
         returnValue.setUserId(companyJobQuestionsDto.getUserId());
+        return returnValue;
+    }
+
+    @PutMapping(path = "/JobQuestions/{id}",consumes ={MediaType.APPLICATION_JSON_VALUE},produces ={MediaType.APPLICATION_JSON_VALUE})
+    public OperationStatusModel updateJobAnswers(@PathVariable String id,@RequestBody CompanyJobQuestionsRequestModel companyJobQuestionsRequestModel){
+        CompanyJobQuestionsDto companyJobQuestionsDto=new CompanyJobQuestionsDto();
+        BeanUtils.copyProperties(companyJobQuestionsRequestModel,companyJobQuestionsDto);
+        companyJobQuestionsDto.setUserId(id);
+        OperationStatusModel returnValue=new OperationStatusModel();
+        returnValue.setOperationName(RequestOperationName.JOB_ANSWERS_UPDATED.name());
+        formService.updateJobAnswersInfo(id,companyJobQuestionsDto);
+        returnValue.setOperationResult(RequestOperationStatus.SUCCESS.name());
         return returnValue;
     }
 }

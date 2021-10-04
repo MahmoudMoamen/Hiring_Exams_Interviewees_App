@@ -33,7 +33,7 @@ public class WebSecurity extends WebSecurityConfigurerAdapter {
                 .permitAll()
                 .antMatchers("/v2/api-docs", "/configuration/**", "/swagger*/**", "/webjars/**")
                 .permitAll()
-                .antMatchers(HttpMethod.POST,"/questions","/questions/*","/registration/EducationalInfo/*","/registration/WorkExperienceInfo/*","/registration/JobQuestions/*")
+                .antMatchers(HttpMethod.POST,"/questions","/questions/*","/registration/PersonalInfo","/registration/EducationalInfo/*","/registration/WorkExperienceInfo/*","/registration/JobQuestions/*","/registration/ExtraQuestions/*")
                 .permitAll()
                 .antMatchers(HttpMethod.DELETE,"/questions/*")
                 .permitAll()
